@@ -13,8 +13,8 @@ import jade.lang.acl.MessageTemplate;
  * Created by Owner on 2015/01/07.
  */
 public class Bidder extends Agent {
-    private int fee = 30;
-    private static final int MAX_PRICE = 1000;
+    private int fee = 10;
+    private static final int MAX_PRICE = 2000;
     private int price = 0;
 
     public void setup() {
@@ -44,7 +44,7 @@ public class Bidder extends Agent {
                 price = Integer.parseInt(msg.getContent());
                 ACLMessage reply = msg.createReply();
 
-                if (price + fee < MAX_PRICE) {
+                if (price + fee <= MAX_PRICE) {
                     price += fee;
                     reply.setPerformative(ACLMessage.PROPOSE);
                 } else {
